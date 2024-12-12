@@ -2,9 +2,12 @@ name: CI CD
 
 on:
   push:
-    branches: [test]
+    branches: 
+      - test
   release:
-    types: [released, prereleased]
+    types: 
+      - released
+      - prereleased
 
 
 
@@ -16,13 +19,3 @@ jobs:
     steps:
       - name: Output
         run: echo "testing"
-    if: github.event_name == 'release' && github.event.action == 'prereleased'
-    environment: staging
-    steps:
-      - name: Output
-        run: echo "staging"
-    if: github.event_name == 'release' && github.event.action == 'released'
-    environment: production
-    steps:
-      - name: Output
-        run: echo "production"
