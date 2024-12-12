@@ -25,7 +25,6 @@ jobs:
     needs: initial
     if: github.event_name == 'push' && github.ref_name == 'test'
     runs-on: ubuntu-latest
-    environment: testing
     steps:
       - name: Echo
         run: echo "BUILDING TEST"
@@ -44,7 +43,6 @@ jobs:
     needs: initial
     if: github.event_name == 'release' && github.event.action == 'prereleased'
     runs-on: ubuntu-latest
-    environment: staging
     steps:
       - name: Echo
         run: echo "BUILDING STAGING"
@@ -61,7 +59,6 @@ jobs:
     needs: initial
     if: github.event_name == 'release' && github.event.action == 'released'
     runs-on: ubuntu-latest
-    environment: production
     steps:
       - name: Echo
         run: echo "BUILDING PROD"
