@@ -1,0 +1,28 @@
+name: CI CD
+
+on:
+  push:
+    branches: [test]
+  release:
+    types: [released, prereleased]
+
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/head/test')
+    environment: test
+    steps:
+      - name: Output
+        run: echo "testing"
+    if: github.event_name == 'release' && github.event.action == 'prereleased'
+    environment: staging
+    steps:
+      - name: Output
+        run: echo "staging"
+    if: github.event_name == 'release' && github.event.action == 'released'
+    environment: production
+    steps:
+      - name: Output
+        run: echo "production"
