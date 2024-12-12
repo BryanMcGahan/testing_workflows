@@ -28,7 +28,50 @@ jobs:
     environment: testing
     steps:
       - name: Echo
-        run: echo "Testing"
-      
+        run: echo "BUILDING TEST"
+
+
+  deploy-test:
+    needs: build-test
+    runs-on: ubuntu-latest
+    environment: testing
+    steps:
+      - name: Echoing
+        run: echo "DEPLOYING TEST"
+
+
+  build-staging:
+    needs: initial
+    if: github.event_name == 'release' && github.event.action == 'prereleased'
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - name: Echo
+        run: echo "BUILDING STAGING"
+
+  deploy-staging:
+    needs: build-staging
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - name: Echo
+        run: echo "DEPLOYING STAGING"
+
+  build-production:
+    needs: initial
+    if: github.event_name == 'release' && github.event.action == 'released'
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Echo
+        run: echo "BUILDING PROD"
+        
+  deploy-production:
+    needs: build-production
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Echo
+        run: echo "DEPLOYING PROD"
       
     
