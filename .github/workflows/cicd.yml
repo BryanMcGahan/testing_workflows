@@ -12,7 +12,14 @@ on:
 
 
 jobs:
+  initial:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Output
+        run: echo "Testing"
+
   build-test:
+    needs: initial
     if: github.event == 'push' && github.ref == 'refs/head/test'
     runs-on: ubuntu-latest
     environment: testing
