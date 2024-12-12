@@ -18,4 +18,4 @@ jobs:
     environment: test
     steps:
       - name: Output
-        run: echo "testing"
+        run: echo "We are in test"
