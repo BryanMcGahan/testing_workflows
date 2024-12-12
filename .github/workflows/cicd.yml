@@ -23,7 +23,7 @@ jobs:
 
   build-test:
     needs: initial
-    if: github.event == 'push' && github.ref == 'refs/head/test'
+    if: github.event == 'push' && github.ref == 'refs/heads/test'
     runs-on: ubuntu-latest
     environment: testing
     steps:
