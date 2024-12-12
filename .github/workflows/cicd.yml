@@ -16,7 +16,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Output
-        run: echo "Testing"
+        run: |
+          echo "${{github.event}}"
+          echo "${{github.ref}}"
+          echo "${{github.ref_name}}"
 
   build-test:
     needs: initial
